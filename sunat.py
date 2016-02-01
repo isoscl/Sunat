@@ -18,7 +18,7 @@ def inicio():
 	return xml_str
 
 
-def pago(numero):
+def pago(numero,id1,total):
 	extUBLExtensions=doc.createElement('ext:UBLExtensions')
 	extUBLExtension=doc.createElement('ext:UBLExtension')
 	extUBLExtensions.appendChild(extUBLExtension)
@@ -26,11 +26,12 @@ def pago(numero):
 	extUBLExtension.appendChild(extExtensionContent)
 	sacAdditionalInformation=doc.createElement('sac:AdditionalInformation')
 	extExtensionContent.appendChild(sacAdditionalInformation)
-	sacAdditionalMonetaryTotal=doc.createElement('sac:AdditionalMonetaryTotal')
-	sacAdditionalInformation.appendChild(sacAdditionalMonetaryTotal)
 	while numero >=1:
+		print('Ingrese id: ')
 		id=raw_input()
+		print('Ingrese pago: ')
 		pago=raw_input()
+		sacAdditionalMonetaryTotal=doc.createElement('sac:AdditionalMonetaryTotal')
 		cbcID=doc.createElement('cbc:ID')
 		text=doc.createTextNode(id)
 		cbcID.appendChild(text)
@@ -40,15 +41,16 @@ def pago(numero):
 		text=doc.createTextNode(pago)
 		cbcPayableAmount.appendChild(text)
 		sacAdditionalMonetaryTotal.appendChild(cbcPayableAmount)
+		sacAdditionalInformation.appendChild(sacAdditionalMonetaryTotal)
 		numero=numero-1
 	sacAdditionalProperty=doc.createElement('sac:AdditionalProperty')
 	sacAdditionalInformation.appendChild(sacAdditionalProperty)
 	cbcID=doc.createElement('cbcID')
-	text=doc.createTextNode(' ')
+	text=doc.createTextNode(id1)
 	cbcID.appendChild(text)
 	sacAdditionalProperty.appendChild(cbcID)
 	cbcValue=doc.createElement('cbc:Value')
-	text=doc.createTextNode(' ')
+	text=doc.createTextNode(total)
 	cbcValue.appendChild(text)
 	sacAdditionalProperty.appendChild(cbcValue)
 	xml_str = extUBLExtensions.toprettyxml(indent="  ") 
@@ -198,43 +200,43 @@ def DatosProveedor(id,idAdicional,nombre,idDireccion,nombreCalle,nombreCiudad,no
 def UBLVersion():
 	UBLVersion=doc.createElement('cbc:UBLVersion')
 	text=doc.createTextNode('2.0')
-	doc.appendChild(UBLVersion)
-	xml_str = cacAccountingSupplierParty.toprettyxml(indent="  ") 
+	UBLVersion.appendChild(text)
+	xml_str = UBLVersion.toprettyxml(indent="  ") 
 	return xml_str
 
 def customizationID():
 	cbcCustomizationID=doc.createElement('cbc:CustomizationID')
 	text=doc.createTextNode('1.0')
 	cbcCustomizationID.appendChild(text)
-	xml_str = cacAccountingSupplierParty.toprettyxml(indent="  ") 
+	xml_str = cbcCustomizationID.toprettyxml(indent="  ") 
 	return xml_str
 
 def id():
 	cbcID=doc.createElement('cbc:ID')
 	text=doc.createTextNode(' ')
 	cbcID.appendChild(text)
-	xml_str = cacAccountingSupplierParty.toprettyxml(indent="  ") 
+	xml_str = cbcID.toprettyxml(indent="  ") 
 	return xml_str
 
 def issueDate(fecha):
 	cbcIssueDate=doc.createElement('cbc:IssueDate')
 	text=doc.createTextNode(fecha)
 	cbcIssueDate.appendChild(text)
-	xml_str = cacAccountingSupplierParty.toprettyxml(indent="  ") 
+	xml_str = cbcIssueDate.toprettyxml(indent="  ") 
 	return xml_str
 
 def invoiceTypeCode():
 	cbcInvoiceTypeCode=doc.createElement('cbc:invoiceTypeCode')
-	text=doc.createElement(' ')
+	text=doc.createTextNode('01')
 	cbcInvoiceTypeCode.appendChild(text)
-	xml_str = cacAccountingSupplierParty.toprettyxml(indent="  ") 
+	xml_str = cbcInvoiceTypeCode.toprettyxml(indent="  ") 
 	return xml_str
 
 def documentCurrencyCode():
 	cbcDocumentCurrencyCode=doc.createElement('cbc:DocumentCurrencyCode')
-	text=doc.createElement(' ')
+	text=doc.createTextNode('PEN')
 	cbcDocumentCurrencyCode.appendChild(text)
-	xml_str = cacAccountingSupplierParty.toprettyxml(indent="  ") 
+	xml_str = cbcDocumentCurrencyCode.toprettyxml(indent="  ") 
 	return xml_str
 
 def DatosCliente(id,idAdicional,nombre):
@@ -374,6 +376,7 @@ def Producto(idP,cantidad,montoT,monto,nombre,identificacion,precio):
 	cacTaxSubtotal.appendChild(cacTaxCategory)
 	cbcTaxExemptionReasonCode=doc.createElement('cbc:TaxExemptionReasonCode')
 	text=doc.createTextNode(' ')
+	cbcTaxExemptionReasonCode.appendChild(text)
 	cacTaxCategory.appendChild(cbcTaxExemptionReasonCode)
 	cacTaxScheme=doc.createElement('cac:TaxScheme')
 	cacTaxCategory.appendChild(cacTaxScheme)
@@ -410,11 +413,43 @@ def Producto(idP,cantidad,montoT,monto,nombre,identificacion,precio):
 	cbcPriceAmount.appendChild(text)
 	cacPrice.appendChild(cbcPriceAmount)
 
+	cacPrice=doc.createElement('cac:Price')
+	cacInvoiceLine.appendChild(cacPrice)
+	cbcPriceAmount=doc.createElement('cbc:PriceAmount')
+	cbcPriceAmount.setAttribute('currencyID','PEN')
+	text=doc.createTextNode(precio)
+	cbcPriceAmount.appendChild(text)
+	cacPrice.appendChild(cbcPriceAmount)
+
 	xml_str = cacInvoiceLine.toprettyxml(indent="  ") 
 	return xml_str
 
-
-
-a=Producto('Grabadora LG Externo',' ',' ',' ',' ',' ',' ')
-f=open("minidom_example.xml", "w")
-f.write(a)
+if __name__ == "__main__":
+	a=inicio()
+	b=pago(1,'1000','CUATROCIENTOS VEINTITRES MIL DOSCIENTOS VEINTICINCO Y 00/100')
+	c=firma('firma','certificado')
+	d=UBLVersion()
+	e=customizationID()
+	f=id()
+	e=issueDate('2016-01-14')
+	g=invoiceTypeCode()
+	h=documentCurrencyCode()
+	i=declaracionFirma('id','identificacion','nombre','firma')
+	j=DatosProveedor('id','idAdicional','nombre','idDireccion','nombreCalle','nombreCiudad','nombreDepartamento','nombreDistrito','nombreRegistro'
+		,'codigoID')
+	k=DatosCliente('id','idAdicional','nombre')
+	l=sumatoriaIGV('12')
+	m=Producto('idP','cantidad','montoT','monto','nombre','identificacion','precio')
+	f=open("minidom_example.xml", "w")
+	f.write(a)
+	f.write(b)
+	f.write(c)
+	f.write(d)
+	f.write(e)
+	f.write(g)
+	f.write(h)
+	f.write(i)
+	f.write(j)
+	f.write(k)
+	f.write(l)
+	f.write(m)

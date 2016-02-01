@@ -1,7 +1,118 @@
+<?xml version="1.0" ?>
+<invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:invoice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:commonaggregatecomponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:commonbasiccomponents-2" xmlns:ccts="urn:un:unece:uncefact:documentation:2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:commonextensioncomponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:qualifieddatatypes-2" xmlns:sac="urn:sunat:names:specification:ubl:peru:schema:xsd:sunataggregatecomponents-1" xmlns:udt="urn:un:unece:uncefact:data:specification:unqualifieddatatypesschemamodule:2" xmlns:xsi="http://www.w3.org/2001/xmlschema-instance"/>
+<ext:UBLExtensions>
+  <ext:UBLExtension>
+    <ext:ExtensionContent>
+      <sac:AdditionalInformation>
+        <sac:AdditionalMonetaryTotal>
+          <cbc:ID>12</cbc:ID>
+          <cbc:PayableAmount currencyID="PEN">12</cbc:PayableAmount>
+        </sac:AdditionalMonetaryTotal>
+        <sac:AdditionalProperty>
+          <cbcID>1000</cbcID>
+          <cbc:Value>CUATROCIENTOS VEINTITRES MIL DOSCIENTOS VEINTICINCO Y 00/100</cbc:Value>
+        </sac:AdditionalProperty>
+      </sac:AdditionalInformation>
+    </ext:ExtensionContent>
+  </ext:UBLExtension>
+</ext:UBLExtensions>
+<ext:UBLExtensions>
+  <ext:UBLExtension>
+    <ext:ExtensionContent>
+      <ds:Signature Id="signatureKG">
+        <ds:SignedInfo>
+          <ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/>
+          <ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#dsa-sha1"/>
+          <ds:Reference URI=" ">
+            <ds:Transforms>
+              <dsTransform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+            </ds:Transforms>
+            <ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+            <ds:DigestValue>+pruib33lOapq6GSw58GgQLR8VGIGqANloj4EqB1cb4=</ds:DigestValue>
+          </ds:Reference>
+        </ds:SignedInfo>
+        <ds:SignatureValue>firma</ds:SignatureValue>
+        <ds:KeyInfo>
+          <ds:X509Data>
+            <ds:X509Certificate>certificado</ds:X509Certificate>
+          </ds:X509Data>
+        </ds:KeyInfo>
+      </ds:Signature>
+    </ext:ExtensionContent>
+  </ext:UBLExtension>
+</ext:UBLExtensions>
+<cbc:UBLVersion>2.0</cbc:UBLVersion>
+<cbc:IssueDate>2016-01-14</cbc:IssueDate>
+<cbc:invoiceTypeCode>01</cbc:invoiceTypeCode>
+<cbc:DocumentCurrencyCode>PEN</cbc:DocumentCurrencyCode>
+<cac:Signature>
+  <cbc:ID>id</cbc:ID>
+  <cac:SignatoreParty>
+    <cac:PartyIdentification>
+      <cbc:ID>identificacion</cbc:ID>
+    </cac:PartyIdentification>
+    <cac:PartyName>
+      <cbc:Name>
+<![CDATA[nombre]]>      </cbc:Name>
+    </cac:PartyName>
+  </cac:SignatoreParty>
+  <cac:DigitalSignatureAttachment>
+    <cac:ExternalReference>
+      <cbc:URI>firma</cbc:URI>
+    </cac:ExternalReference>
+  </cac:DigitalSignatureAttachment>
+</cac:Signature>
+<cac:AccountingSupplierParty>
+  <cbc:CustomerAssignedAccountID>id</cbc:CustomerAssignedAccountID>
+  <cbc:AdditionalAccountID>idAdicional</cbc:AdditionalAccountID>
+  <cac:Party>
+    <cac:PartyName>
+      <cbc:Name>
+<![CDATA[nombre]]>      </cbc:Name>
+    </cac:PartyName>
+    <cac:PostalAddress>
+      <cbc:ID>idDireccion</cbc:ID>
+      <cbc:StreetName>nombreCalle</cbc:StreetName>
+      <cbc:CitySubdivisionName> </cbc:CitySubdivisionName>
+      <cbc:CityName>nombreCiudad</cbc:CityName>
+      <cbc:CountrySubentity>nombreDepartamento</cbc:CountrySubentity>
+      <cbc:District>nombreDistrito</cbc:District>
+      <cac:Country>
+        <cbc:IdentificationCode>codigoID</cbc:IdentificationCode>
+      </cac:Country>
+    </cac:PostalAddress>
+    <cac:PartyLegalEntity>
+      <cbc:RegistrationName>
+<![CDATA[nombreRegistro]]>      </cbc:RegistrationName>
+    </cac:PartyLegalEntity>
+  </cac:Party>
+</cac:AccountingSupplierParty>
+<cac:AccountingCustomerParty>
+  <cbc:CustomerAssignedAccountID>id</cbc:CustomerAssignedAccountID>
+  <cbc:AdditionalAccountID>idAdicional</cbc:AdditionalAccountID>
+  <cac:Party>
+    <cac:PartyLegalEntity>
+      <cbc:RegistrationName>nombre</cbc:RegistrationName>
+    </cac:PartyLegalEntity>
+  </cac:Party>
+</cac:AccountingCustomerParty>
+<cac:TaxTotal>
+  <cbc:TaxAmount currencyID="PEN">12</cbc:TaxAmount>
+  <cac:TaxSubtotal>
+    <cbc:TaxAmount currencyID="PEN">12</cbc:TaxAmount>
+    <cac:TaxCategory>
+      <cac:TaxScheme>
+        <cbc:ID>12</cbc:ID>
+        <cbc:Name>IGV</cbc:Name>
+        <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+      </cac:TaxScheme>
+    </cac:TaxCategory>
+  </cac:TaxSubtotal>
+</cac:TaxTotal>
 <cac:InvoiceLine>
-  <cbc:ID>Grabadora LG Externo</cbc:ID>
-  <cbc:InvoiceQuantity unitCode="NIU"> </cbc:InvoiceQuantity>
-  <cbc:LineExtensionAmount currencyID="PEN"> </cbc:LineExtensionAmount>
+  <cbc:ID>idP</cbc:ID>
+  <cbc:InvoiceQuantity unitCode="NIU">cantidad</cbc:InvoiceQuantity>
+  <cbc:LineExtensionAmount currencyID="PEN">montoT</cbc:LineExtensionAmount>
   <cacPricingReference>
     <cac:AlternativeConditionPrice>
       <cbc:PriceAmount currencyID="PEN"> </cbc:PriceAmount>
@@ -9,13 +120,13 @@
     </cac:AlternativeConditionPrice>
   </cacPricingReference>
   <cac:TaxTotal>
-    <cbc:TaxAmount currencyID="PEN"> </cbc:TaxAmount>
+    <cbc:TaxAmount currencyID="PEN">monto</cbc:TaxAmount>
     <cac:TaxSubtotal>
-      <cbc:TaxAmount currencyID="PEN"> </cbc:TaxAmount>
+      <cbc:TaxAmount currencyID="PEN">monto</cbc:TaxAmount>
       <cac:TaxCategory>
-        <cbc:TaxExemptionReasonCode/>
+        <cbc:TaxExemptionReasonCode> </cbc:TaxExemptionReasonCode>
         <cac:TaxScheme>
-          <cbc:ID> </cbc:ID>
+          <cbc:ID>monto</cbc:ID>
           <cbc:Name>IGV</cbc:Name>
           <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
         </cac:TaxScheme>
@@ -23,9 +134,12 @@
     </cac:TaxSubtotal>
   </cac:TaxTotal>
   <cac:Item>
-    <cbc:Description> </cbc:Description>
+    <cbc:Description>nombre</cbc:Description>
     <cac:SellersItemIdentification>
-      <cbc:ID> </cbc:ID>
+      <cbc:ID>identificacion</cbc:ID>
     </cac:SellersItemIdentification>
   </cac:Item>
+  <cac:Price>
+    <cbc:PriceAmount currencyID="PEN">precio</cbc:PriceAmount>
+  </cac:Price>
 </cac:InvoiceLine>
