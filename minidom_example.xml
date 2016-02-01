@@ -1,0 +1,31 @@
+<cac:InvoiceLine>
+  <cbc:ID>Grabadora LG Externo</cbc:ID>
+  <cbc:InvoiceQuantity unitCode="NIU"> </cbc:InvoiceQuantity>
+  <cbc:LineExtensionAmount currencyID="PEN"> </cbc:LineExtensionAmount>
+  <cacPricingReference>
+    <cac:AlternativeConditionPrice>
+      <cbc:PriceAmount currencyID="PEN"> </cbc:PriceAmount>
+      <cbc:PriceTypeCode> </cbc:PriceTypeCode>
+    </cac:AlternativeConditionPrice>
+  </cacPricingReference>
+  <cac:TaxTotal>
+    <cbc:TaxAmount currencyID="PEN"> </cbc:TaxAmount>
+    <cac:TaxSubtotal>
+      <cbc:TaxAmount currencyID="PEN"> </cbc:TaxAmount>
+      <cac:TaxCategory>
+        <cbc:TaxExemptionReasonCode/>
+        <cac:TaxScheme>
+          <cbc:ID> </cbc:ID>
+          <cbc:Name>IGV</cbc:Name>
+          <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+        </cac:TaxScheme>
+      </cac:TaxCategory>
+    </cac:TaxSubtotal>
+  </cac:TaxTotal>
+  <cac:Item>
+    <cbc:Description> </cbc:Description>
+    <cac:SellersItemIdentification>
+      <cbc:ID> </cbc:ID>
+    </cac:SellersItemIdentification>
+  </cac:Item>
+</cac:InvoiceLine>
